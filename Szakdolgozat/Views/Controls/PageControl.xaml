@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Szakdolgozat.Controls.PageControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:Szakdolgozat.ViewModels.ControlViewModels" 
+             xmlns:local="clr-namespace:Szakdolgozat.Models"
+             d:DataContext="{d:DesignInstance Type=vm:PageControlViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <ScrollViewer Grid.Row="0" Grid.Column="0" MaxWidth="800">
+            <TextBox IsReadOnly="True" 
+                     Text="{Binding Text}" 
+                     x:Name="selection" 
+                     MaxWidth="800" 
+                     DataContext="{Binding}" 
+                     TextWrapping="WrapWithOverflow">
+                <TextBox.Resources>
+                    <local:BindingProxy x:Key="Proxy" Data="{Binding}" />
+                </TextBox.Resources>
+                <TextBox.ContextMenu>
+                    <ContextMenu Name="ContextMenu" LostFocus="menuItem_LostFocus">
+                        <MenuItem x:Name="menuItem" Header="Translate" Click="MenuItem_Click" StaysOpenOnClick="True"/>
+                        <MenuItem x:Name="translatedText" Visibility="Collapsed" IsCheckable="False" StaysOpenOnClick="True" />
+                    </ContextMenu>
+                </TextBox.ContextMenu>
+            </TextBox>
+        </ScrollViewer>
+     </Grid>
+</UserControl>
